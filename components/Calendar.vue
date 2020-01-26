@@ -23,6 +23,7 @@
     </div>
 </template>
 <script>
+
 export default {
     computed: {
         /**
@@ -44,32 +45,61 @@ export default {
                 return x + startDay
             });
         },
-        dayAbbreviations: function(){
-            return this.daysOfTheWeek.map(day => day.slice(0, 3).toUpperCase());
+        month: function(){
+            return this.startDate.toLocaleString('default', { month: 'long' });
+        },
+        dayNumber: function(){
+            return this.startDate.getDate();
         },
         dayString: function(){
             return this.daysOfTheWeek[new Date().getDay()];
+        },
+        dayOfWeek: function() {
+            return this.startDate.getDay();
+        },
+        dayAbbreviations: function(){
+            return this.daysOfTheWeek.map(day => day.slice(0, 3).toUpperCase());
+        },
+        lastDayOfMonth: function(){
+            let year = this.startDate.getFullYear();
+            let month = this.startDate.getMonth() + 1;
+            let day = 0;
+
+            return new Date(year, month, day).getDate();
+        },
+        lastDayOfPreviousMonth: function(){
+            let year = this.startDate.getFullYear();
+            let month = this.startDate.getMonth();
+            let day = 0;
+
+            return new Date(year, month, day).getDate();
+        },
+        year: function(){
+            return this.startDate.getFullYear();
         }
     },
     data() {
-        let startDate = new Date();
-
         return {
+            startDate: new Date(),
             daysOfTheWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            month: startDate.toLocaleString('default', { month: 'long' }),
-            dayNumber: startDate.getDate(),
-            year: startDate.getFullYear(),
-            dayOfWeek: startDate.getDay(),
-            lastDayOfMonth: new Date(startDate.getFullYear(), startDate.getMonth() + 1, 0).getDate(),
-            lastDayOfPreviousMonth: new Date(startDate.getFullYear(), startDate.getMonth(), 0).getDate()
         };
     },
     methods: {
         previousWeek: function(){
             console.log("Clicked previous week");
+            let year    = this.startDate.getFullYear();
+            let month   = this.startDate.getMonth();
+            let day     = this.startDate.getDate() - (7- this.startDate.getDay());
+
+            this.startDate = new Date(year, month, day);
         },
         nextWeek: function(){
             console.log("Clicked next week");
+            let year    = this.startDate.getFullYear();
+            let month   = this.startDate.getMonth();
+            let day     = this.startDate.getDate() + (7 - this.startDate.getDay());
+
+            this.startDate = new Date(year, month, day);
         },
         isToday: function(day){
             let now = new Date().getDate();
