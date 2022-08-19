@@ -6,15 +6,15 @@
             <b-button variant="outline-primary" type="button" v-on:click="nextWeek">{{">"}}</b-button>
         </h1>
         <div class="calendar-view">
+            <div class="calendar-weekday-headers" v-for="(day) in dayAbbreviations" :key="day">
+                <div class="calendar-weekday-header">{{ day }}</div>
+            </div>
             <div class="calendar-weekday" v-for="(day, index) in dayAbbreviations" :key="index">
                 <div class="calendar-banner"></div>
                 <div class="calendar-day-banner"></div>
                 <span class="calendar-day" v-bind:class="isToday(numberedDaysOfWeek[index])">
                     {{ numberedDaysOfWeek[index] }}
                 </span>
-                <div class="calendar-weekday-header">
-                    {{ day }}
-                </div>
                 <div class="calendar-weekday-content">
 
                 </div>
@@ -23,6 +23,7 @@
     </div>
 </template>
 <script>
+const today = new Date();
 
 export default {
     computed: {
@@ -81,6 +82,8 @@ export default {
     data() {
         return {
             startDate: new Date(),
+            currentMonth: today.getMonth(),
+            currentYear: today.getFullYear(),
             daysOfTheWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
         };
     },
@@ -102,9 +105,20 @@ export default {
             this.startDate = new Date(year, month, day);
         },
         isToday: function(day){
-            let now = new Date().getDate();
+            let nowDay   = new Date().getDate();
+            let nowMonth = new Date().getMonth();
+            let nowYear  = new Date().getFullYear();
 
-            return day === now ? "today" : "";
+            let nowDate = new Date(nowYear, nowMonth, nowDay);
+            let todaysDate = new Date(this.currentYear, this.currentMonth, day);
+            console.log("Now Date: ", nowDate);
+            console.log("Todays Date: ", todaysDate);
+
+            let datesEqual = nowDate.getMonth() === todaysDate.getMonth() &&
+                            nowDate.getFullYear() === todaysDate.getFullYear() &&
+                            nowDate.getDate() === todaysDate.getDate();
+
+            return datesEqual ? "today" : "";
         }
     }
 }
@@ -164,7 +178,7 @@ export default {
 }
 .calendar-weekday {
   border: 3px solid #007bff;
-  height: 250px;
+  height: 200px;
 }
 .calendar-weekday-header {
   display: flex;
@@ -172,6 +186,7 @@ export default {
   align-items: center;
   padding-top: 10px;
   padding-bottom: 10px;
-  border-bottom: 2px dashed gray;
+  margin-bottom: 10px;
+  border: 2px dashed gray;
 }
 </style>
