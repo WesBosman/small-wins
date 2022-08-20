@@ -9,7 +9,7 @@
                 <b-form-input v-model="title"></b-form-input>
             </b-form-group>
         </b-form>
-        <div class="flex" slot="modal-footer">
+        <div slot="modal-footer">
             <b-button type="reset" @click="onReset" variant="danger">Reset</b-button>
             <b-button type="submit" @click="onSubmit" variant="primary">Submit</b-button>
         </div>
@@ -30,7 +30,6 @@ export default {
     },
     data() {
         return {
-            categories: [],
             title: ''
         };
     }

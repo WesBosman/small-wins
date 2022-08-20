@@ -1,11 +1,21 @@
 <template>
   <div class="container-fluid">
-    <NavBar></NavBar>
-    <CategoryList></CategoryList>
-    <FloatingButton @add-category-clicked="this.addCategoryButtonClicked"></FloatingButton>
+    <NavBar/>
+    <CategoryList v-if="!this.showCategoryItems"
+      @clicked-category="this.clickedCategory"
+      :categories="this.categories"
+    />
+    <CategoryItemList v-else 
+      @clicked-category-back="this.clickedCategoryBack"
+      :selectedCategory="this.selectedCategory"
+    />
+    <FloatingButton 
+      @add-category-clicked="this.addCategoryButtonClicked"
+    />
 
     <!-- Modals -->
-    <AddCategoryModal/>
+    <AddCategoryModal v-if="!this.showCategoryItems"/>
+    <AddCategoryItemModal v-else :selectedCategory="this.selectedCategory"/>
   </div>
 </template>
 
@@ -14,17 +24,43 @@ import NavBar from '~/components/NavBar.vue';
 import CategoryList from '~/components/CategoryList.vue';
 import FloatingButton from '~/components/FloatingButton.vue';
 import AddCategoryModal from '~/components/CategoryModal.vue';
+import CategoryItemList from '~/components/CategoryItemList.vue';
+import AddCategoryItemModal from '~/components/CategoryItemModal.vue';
 
 export default {
+  computed: {
+    categories() {
+        return this.$store.state.categories.list;
+    }
+  },
   components: {
     NavBar,
     CategoryList,
+    CategoryItemList,
     FloatingButton,
-    AddCategoryModal
+    AddCategoryModal,
+    AddCategoryItemModal
   },
   methods: {
+    clickedCategory(category) {
+      const foundCategory = this.categories.find((element) => {
+        return element.title === category;
+      })
+      this.category = category;
+      this.selectedCategory = foundCategory;
+      this.showCategoryItems = true;
+    },
+    clickedCategoryBack() {
+      this.category = '';
+      this.showCategoryItems = false;
+    },
     addCategoryButtonClicked: function() {
-      this.$bvModal.show('add-category-modal-id');
+      if(this.showCategoryItems){
+        this.$bvModal.show('add-category-item-modal-id');
+      }
+      else {
+        this.$bvModal.show('add-category-modal-id');
+      }
     },
     closeAddCategoryModal: function() {
       this.$bvModal.hide('add-category-modal-id');
@@ -32,7 +68,8 @@ export default {
   },
   data() {
     return {
-
+      category: '',
+      showCategoryItems: false,
     };
   }
 }

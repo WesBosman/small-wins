@@ -1,5 +1,6 @@
 <template>
-    <div class="floating-button" @click="() => this.$emit('add-category-clicked')">
+    <div class="floating-button" 
+        @click="() => this.$emit('add-category-clicked')">
       +
     </div>
 </template>
@@ -24,5 +25,8 @@ export default {
   right: 10px;
   background-color: green;
   border-radius: 50%;
+}
+.floating-button:hover {
+    cursor: pointer;
 }
 </style>
