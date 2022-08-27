@@ -1,7 +1,7 @@
 {
   "name": "small-wins",
   "version": "1.0.0",
-  "description": "My luminous Nuxt.js project",
+  "description": "An app for keeping track of spending",
   "author": "Wes Bosman",
   "private": true,
   "scripts": {

@@ -26,6 +26,7 @@ import FloatingButton from '~/components/FloatingButton.vue';
 import AddCategoryModal from '~/components/CategoryModal.vue';
 import CategoryItemList from '~/components/CategoryItemList.vue';
 import AddCategoryItemModal from '~/components/CategoryItemModal.vue';
+import Footer from '~/components/Footer.vue';
 
 export default {
   computed: {
@@ -39,7 +40,8 @@ export default {
     CategoryItemList,
     FloatingButton,
     AddCategoryModal,
-    AddCategoryItemModal
+    AddCategoryItemModal,
+    Footer,
   },
   methods: {
     clickedCategory(category) {
