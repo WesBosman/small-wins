@@ -10,7 +10,9 @@
     </b-navbar>
 </template>
 <style>
-/* Style */
+.navbar.navbar-dark.bg-dark{
+    background-color: #3B3561!important;
+ }
 </style>
 <script>
 import { BIconInfoFill } from 'bootstrap-vue';
