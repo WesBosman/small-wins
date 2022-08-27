@@ -1,23 +1,18 @@
 # small-wins
 
-> My luminous Nuxt.js project
+A website that I use on my phone to keep track of when I spend money.
 
-## Build Setup
+## Goals
 
-``` bash
-# install dependencies
-$ npm run install
+The goal of this project was to create something small that could be built and deployed quickly on a small VPS.
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+### Future Development
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+- [ ] Add https
+- [ ] Make it theme-able using settings
+- [ ] Add a way to delete items / categories
 
-# generate static project
-$ npm run generate
-```
+I ended up renaming the project to KeepingScore because I already had the domain.
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-# small-wins
+You can find the project here
+http://keepingscore.io/
