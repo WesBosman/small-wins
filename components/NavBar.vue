@@ -2,7 +2,7 @@
     <b-navbar :style="style" toggleable="lg" type="dark" variant="dark">
       <b-navbar-brand href="/">Keeping Score</b-navbar-brand>
 
-      <b-navbar-nav>
+      <b-navbar-nav class="ml-auto">
           <b-nav-item href="/about">
             <b-icon-info/>
           </b-nav-item>
