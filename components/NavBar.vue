@@ -1,5 +1,5 @@
 <template>
-    <b-navbar toggleable="lg" type="dark" variant="dark">
+    <b-navbar :style="style" toggleable="lg" type="dark" variant="dark">
       <b-navbar-brand href="/">Keeping Score</b-navbar-brand>
 
       <b-navbar-nav>
@@ -9,15 +9,17 @@
       </b-navbar-nav>
     </b-navbar>
 </template>
-<style>
-.navbar.navbar-dark.bg-dark{
-    background-color: #3B3561!important;
- }
-</style>
 <script>
 import { BIconInfoFill } from 'bootstrap-vue';
 
 export default {
+    computed: {
+        style: function() {
+            return {
+                backgroundColor: this.$store.state.settings.primaryColor + ' !important'
+            };
+        }
+    },
     components: {
         'b-icon-info': BIconInfoFill
     },
