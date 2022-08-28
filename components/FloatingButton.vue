@@ -82,6 +82,9 @@ export default {
     transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    visibility: visible;
 }
 .three-dots.slideout {
     transform: rotate(90deg);
