@@ -10,6 +10,7 @@ The goal of this project was to create something small that could be built and d
 
 - [ ] Add https
 - [ ] Make it theme-able using settings
+- [ ] Add a way to restore default settings
 - [ ] Add a way to delete items / categories
 
 I ended up renaming the project to KeepingScore because I already had the domain.

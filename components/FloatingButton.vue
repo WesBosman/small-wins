@@ -80,9 +80,13 @@ export default {
 .three-dots {
     transition: all 0.5s ease;
     transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
 }
 .three-dots.slideout {
     transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
     transition-duration: 0.5s;
     transition-timing-function: ease;
 }
